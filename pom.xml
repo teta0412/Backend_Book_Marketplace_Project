@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.teta</groupId>
-	<artifactId>Online-Book-Ordering</artifactId>
+	<artifactId>Backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Online-Book-Ordering</name>
 	<description>Online Book Ordering System</description>
