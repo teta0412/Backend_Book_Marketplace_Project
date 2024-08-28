@@ -8,6 +8,7 @@ import com.teta.request.CreateBookRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ public class BookServiceImpl implements BookService{
         book.setAvailable(req.isAvailable());
         book.setComic(req.isComic());
         book.setNovel(req.isNovel());
+        book.setCreationDate(new Date());
 
         Book savedBook = bookRepository.save(book);
         store.getBooks().add(savedBook);
@@ -66,7 +68,7 @@ public class BookServiceImpl implements BookService{
             books = filterByCategory(books,bookCategory);
         }
 
-        return List.of();
+        return books;
     }
 
     private List<Book> filterByCategory(List<Book> books, String bookCategory) {

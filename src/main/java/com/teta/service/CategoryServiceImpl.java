@@ -30,8 +30,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public List<Category> findCategoryByStoreId(Long id) throws Exception {
-        Store store = storeService.findStoreByUserId(id);
-        return categoryRepository.findByStoreId(store.getId());
+//        Store store = storeService.findStoreByUserId(id);
+        return categoryRepository.findByStoreId(id);
     }
 
     @Override

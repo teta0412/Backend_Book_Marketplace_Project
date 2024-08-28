@@ -40,9 +40,9 @@ public class BookController {
     }
 
     @GetMapping("/store/{storeId}")
-    public ResponseEntity<List<Book>> getStoreBook(@RequestParam boolean available,
-                                                   @RequestParam boolean comic,
-                                                   @RequestParam boolean novel,
+    public ResponseEntity<List<Book>> getStoreBook(@RequestParam(required = false) boolean available,
+                                                   @RequestParam(required = false) boolean comic,
+                                                   @RequestParam(required = false) boolean novel,
                                                  @RequestParam(required = false) String book_category,
                                                  @PathVariable Long storeId,
                                                  @RequestHeader("Authorization") String jwt) throws Exception {
