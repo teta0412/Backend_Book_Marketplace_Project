@@ -5,7 +5,9 @@ import com.teta.model.Order;
 import com.teta.model.User;
 import com.teta.request.AddCartItemRequest;
 import com.teta.request.OrderRequest;
+import com.teta.response.PaymentResponse;
 import com.teta.service.OrderService;
+import com.teta.service.PaymentService;
 import com.teta.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,14 +23,18 @@ public class OrderController {
     private OrderService orderService;
 
     @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
     private UserService userService;
 
     @PostMapping("/order")
-    public ResponseEntity<Order> createOrder (@RequestBody OrderRequest req,
-                                                   @RequestHeader("Authorization") String jwt) throws Exception {
+    public ResponseEntity<PaymentResponse> createOrder (@RequestBody OrderRequest req,
+                                                        @RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         Order order = orderService.createOrder(req,user);
-        return new ResponseEntity<>(order, HttpStatus.CREATED);
+        PaymentResponse res = paymentService.createPaymentLink(order);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @GetMapping("/order/user")
